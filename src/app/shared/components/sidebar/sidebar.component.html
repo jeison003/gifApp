@@ -3,7 +3,8 @@
   <hr class="text-white">
 
   <div class="list-group list-reset">
-    <button class="list-group-item list-group-item-action"
+    <button (click)="UsedTag(tag)"
+    class="list-group-item list-group-item-action"
     *ngFor="let tag of historyTag">
     {{tag | titlecase}}
     <!-- | tittlecase es un PIPE que nos permite capitalizar las palabras que muestre en pantalla -->

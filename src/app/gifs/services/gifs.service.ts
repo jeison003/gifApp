@@ -44,7 +44,7 @@ searchTag(tag: string):void{
   .set('limit', '10')
   .set('q', tag)
 
-
+//"SearchResponse" nombre de la inferfaz que tiene toda la peticion
   this.http.get<SearchResponse>(`${this.serviceURL}/search`,{params})
   .subscribe(resp =>{
 
@@ -53,5 +53,5 @@ searchTag(tag: string):void{
   });
 
   }
-  
+
 }
