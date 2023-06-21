@@ -13,7 +13,10 @@ export class GifsService {
   private apiKey: string = 'Mc6kekUSWJjfUIjureo06LZp43X5cUQW';
   private serviceURL: string = 'https://api.giphy.com/v1/gifs';
 
-constructor( private http: HttpClient) { }
+constructor( private http: HttpClient) {
+  this.loadLocalStorage();
+
+}
 
   get tagHistory(){
     // console.log(this._tagsHistory);
@@ -33,6 +36,23 @@ constructor( private http: HttpClient) { }
     this._tagsHistory.unshift(tag);
     //solo mostrara los primeros 10 elementos de la lista
     this._tagsHistory = this._tagsHistory.splice(0,10);
+    //llamo para guardar el elemento en el local storage
+    this.saveLocalStorage();
+  }
+
+  private saveLocalStorage():void{
+    //wl JSON.stringify convierte el objeto en string
+    localStorage.setItem('history', JSON.stringify(this._tagsHistory))
+  }
+  private loadLocalStorage():void{
+    //si ni tenemos data
+    if(!localStorage.getItem('history')) return;
+    //aqui ya sabemos que todo lo que tenemos es un string y lo convertiremos a ub objeto nuevamente ("!" se agrega el not null porque sabemos que no estara vacio)
+    this._tagsHistory = JSON.parse(localStorage.getItem('history')!);
+
+    if(this._tagsHistory.length === 0) return;
+    this.searchTag(this._tagsHistory[0]);
+
   }
 
 searchTag(tag: string):void{
@@ -45,6 +65,7 @@ searchTag(tag: string):void{
   .set('q', tag)
 
 //"SearchResponse" nombre de la inferfaz que tiene toda la peticion
+//this.http.get<SearchResponse>('https://api.giphy.com/v1/gifs/search?api_key=Mc6kekUSWJjfUIjureo06LZp43X5cUQW&q=valorant&limit=10')
   this.http.get<SearchResponse>(`${this.serviceURL}/search`,{params})
   .subscribe(resp =>{
 
