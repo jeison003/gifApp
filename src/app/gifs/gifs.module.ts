@@ -5,6 +5,7 @@ import { SearchBoxComponent } from './components/search-box/search-box.component
 import { CardListComponent } from './components/card-list/card-list.component';
 
 import { CommonModule } from '@angular/common';
+import { GifsCardComponent } from './components/gifs-card/gifs-card.component';
 
 
 
@@ -12,7 +13,8 @@ import { CommonModule } from '@angular/common';
   declarations: [
     HomePageComponent,
     SearchBoxComponent,
-    CardListComponent
+    CardListComponent,
+    GifsCardComponent
   ],
   imports: [
     CommonModule,
