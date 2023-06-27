@@ -1,0 +1,18 @@
+<div class="d-flex justify-content-center">
+
+  <img class="card-img-top animate__animated animate__fadeIn"
+   [src] ="url"
+   [alt] ="alt"
+   (load) ="onLoad()"
+   [ngStyle] = "{display: hasLoader ? '': 'none'} ">
+
+   <img *ngIf="!hasLoader"
+   src="assets/loader.svg" alt="loader"
+   height="35"
+   width="35"
+   class="mt-3">
+</div>
+<!-- La propiedad (load) es propia de angular y nos dice cuando algo ya cargo-->
+<!--el ngStyle es similar al ngClass, te permite agregar propiedades CSS, la condicion dice si el hasLoader es true
+  no hagas nada : pero si es false no "none"  no muestres el hasloadr  -->
+
